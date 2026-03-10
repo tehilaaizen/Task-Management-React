@@ -11,9 +11,8 @@ import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
 import { useDispatch,useSelector } from 'react-redux';
-import { removeProject } from '../features/ProjectsListReducer';
+import { removeProject } from '../store/ProjectsListSlice';
 import AddProject from './AddProject';
-import ShowProject from './ShowProject';
 import { Link } from 'react-router-dom';
 
 
@@ -21,7 +20,7 @@ import { Link } from 'react-router-dom';
 
 const ProjectList=()=>{
      const dispatch = useDispatch();
-     const projectsData = useSelector((state) => state.projectsList.projects);
+     const projectsData = useSelector((store) => store.projectListSlice.projects);
      const [showAdd, setShowAdd] = useState(false);
 
 

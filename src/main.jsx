@@ -1,15 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { createRoot } from 'react-dom/client'
-import projectId from './features/ProjectId';
+import projectId from './store/ProjectIdSlice.js';
 import './index.css'
 import App from './App.jsx'
-import projectsList from './features/ProjectsListReducer.js';
+import projectListSlice from './store/ProjectsListSlice.js';
 import { BrowserRouter} from 'react-router-dom';
+import User from './store/UserSlice.js';
 const store = configureStore({
   reducer: {
-      projectsList : projectsList,
-      projectId: projectId
+     projectListSlice,
+     projectId,
+      User
   }
 })
 

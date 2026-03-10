@@ -1,9 +1,8 @@
 import react, { useState } from 'react';
-import { addProject } from '../features/ProjectsListReducer';
+import { addProject } from '../store/ProjectsListSlice';
 import { useDispatch ,useSelector} from 'react-redux';
-import { setProjectId } from '../features/ProjectId';
-
-const AddProject = ({ onClose }) => {
+import { setProjectId } from '../store/ProjectIdSlice';
+const AddProject = ({onClose}) => {
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
     const dispatch = useDispatch();
