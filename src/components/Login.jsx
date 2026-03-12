@@ -47,24 +47,34 @@ const Login = () => {
         <>
         {showLogin&&
         <div className="card">
-            <div className="flex flex-column md:flex-row">
-                <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+        <div className="flex flex-column md:flex-row ">
+            <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
                 <form  onSubmit={handleSubmit}>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                         <label className="w-6rem">Username</label>
                         <InputText id="username" type="text" className="w-12rem" onChange={e=>setUsername(e.target.value) }value={username}/>
                     </div>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                         <label className="w-6rem">Email</label>
                         <InputText id="email" type="email" className="w-12rem" onChange={e=>setEmail(e.target.value)} value={email}/>
                     </div>
-                    <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                         <label className="w-6rem">Password</label>
                         <InputText id="password" type="password" className="w-12rem" onChange={e=>setPassword(e.target.value)}/>
                     </div>
-                   <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />  
-                   <button type="button" onClick={()=>{setShowLogin}}>Cancel</button>
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
+                    <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" /> 
+                    <Button label="Cancel" icon="pi pi-trash" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />
+                    </div>
+                   
+                   {/* <button type="button" onClick={()=>{setShowLogin}}>Cancel</button> */}
                 </form>  
+                {/* <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
+                    <label className="w-6rem">Title</label>
+                     <InputText id="title" type="text" className="w-12rem" onChange={e => setTitle(e.target.value)} value={title} />
+                </div> */}
+               {/* <Button label="Add Task" icon="pi pi-plus" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" /> */}
+
                 </div>      
             </div>
         </div>}

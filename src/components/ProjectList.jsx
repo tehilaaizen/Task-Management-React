@@ -32,8 +32,9 @@ const ProjectList = () => {
         );
         const footer = (
             <>
-                <Button label="Save" icon="pi pi-check" />
-                <Button label="Cancel" severity="secondary" icon="pi pi-times" style={{ marginLeft: '0.5em' }} onClick={() => dispatch(removeProject(project.id))} />
+                {/* <Button label="Save" icon="pi pi-check" /> */}
+                {/* אפשר להוסיף כפתור של עריכה */}
+                <Button label="Delete" severity="secondary" icon="pi pi-trash" style={{ marginLeft: '0.5em' }} onClick={() => dispatch(removeProject(project.id))} />
             </>
         );
         return (<>
@@ -70,7 +71,6 @@ const ProjectList = () => {
                 <OrderList dataKey="id" value={projectsData} itemTemplate={itemTemplate} header="Projects" filter filterBy="name" filterPlaceholder="Search projects"></OrderList>
             </div>
         </>
-
     )
 }
 export default ProjectList;

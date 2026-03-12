@@ -7,6 +7,11 @@ import App from './App.jsx'
 import projectListSlice from './store/ProjectsListSlice.js';
 import { BrowserRouter} from 'react-router-dom';
 import User from './store/UserSlice.js';
+
+import "primereact/resources/themes/lara-light-blue/theme.css";
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
+
 const store = configureStore({
   reducer: {
      projectListSlice,

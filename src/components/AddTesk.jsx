@@ -54,7 +54,7 @@ const AddTesk = (props) => {
     return (
         <div className="card">
             <div className="flex flex-column md:flex-row ">
-                <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
+                <div className="w-full md:w-15 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                             <label className="w-6rem">Title</label>

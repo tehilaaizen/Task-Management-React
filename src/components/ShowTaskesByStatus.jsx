@@ -84,7 +84,7 @@ const ShowTaskesByStatus=(props)=>{
                         <div className="flex flex-row lg:flex-column align-items-center lg:align-items-end gap-4 lg:gap-2">
                             <span className="text-2xl font-semibold">{task.date}</span>
                             <Button icon="pi pi-trash"  onClick={() => dispatch(removeTask({projectId:project.id,taskId:task.id}))}></Button>
-                            <Button icon='pi pi-down' onClick={() => dispatch(changeStatus({projectId:project.id,taskId:task.id}))}></Button>
+                            <Button icon='pi pi-angle-double-right' onClick={() => dispatch(changeStatus({projectId:project.id,taskId:task.id}))}></Button>
                         </div>
                     </div>
                 </div>
