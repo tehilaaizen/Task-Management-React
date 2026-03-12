@@ -25,6 +25,7 @@ const AddTesk = (props) => {
     const [dueDate, setDueDate] = useState(null);
     const dispatch = useDispatch();
     const [filteredStatus, setFilteredStatus] = useState([]);
+    const statusOptions = ['To Do', 'In Progress', 'Done'];
     const PriorityOptions = ['Low', 'Medium', 'High'];
 
     const handleSubmit = (e) => {
@@ -46,38 +47,42 @@ const AddTesk = (props) => {
         if (props.onClose) props.onClose();
     }
 
-    const search = (event) => {
-        let statusOptions = ['To Do', 'In Progress', 'Done'];
-        setFilteredStatus(event.query ? statusOptions.filter((s) => s.toLowerCase().startsWith(event.query.toLowerCase())) : statusOptions);
-    }
+    // const search = (event) => {
+    //     let statusOptions = ['To Do', 'In Progress', 'Done'];
+    //     setFilteredStatus(event.query ? statusOptions.filter((s) => s.toLowerCase().startsWith(event.query.toLowerCase())) : statusOptions);
+    // }
     return (
         <div className="card">
-            <div className="flex flex-column md:flex-row">
-                <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
+            <div className="flex flex-column md:flex-row ">
+                <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
                     <form onSubmit={handleSubmit}>
-                        <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                             <label className="w-6rem">Title</label>
                             <InputText id="title" type="text" className="w-12rem" onChange={e => setTitle(e.target.value)} value={title} />
                         </div>
-                        <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                             <label className="w-6rem">description</label>
                             <InputText id="text" type="text" className="w-12rem" onChange={e => setDescription(e.target.value)} value={description} />
                         </div>
-                        <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                             <label className="w-6rem">status</label>
-                            <AutoComplete value={status} suggestions={filteredStatus} completeMethod={search} onChange={(e) => setStatus(e.value)} placeholder='choose status' dropdown={true} />
+                               <Dropdown className="w-12rem" value={status} options={statusOptions} onChange={(e) => setStatus(e.value)} placeholder='choose status' dropdown={true}/>
+
                         </div>
-                        <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                        <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                             <label className="w-6rem">priority</label>
-                            <Dropdown value={priority} options={PriorityOptions} onChange={(e) => setPriority(e.value)} placeholder='choose priority' dropdown={true}/>
+                            <Dropdown className="w-12rem" value={priority} options={PriorityOptions} onChange={(e) => setPriority(e.value)} placeholder='choose priority' dropdown={true}/>
                         </div>
-                        <div className="flex-auto">
-                            <label htmlFor="buttondisplay" className="font-bold block mb-2">
-                                Button Display
-                            </label>
-                            <Calendar id="buttondisplay" value={dueDate} onChange={(e) => setDueDate(e.value)} icon="pi pi-calendar" />
+                        <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
+                            <label htmlFor="buttondisplay" className="w-6rem">Date</label>
+                            <Calendar className='w-12rem' id="buttondisplay" value={dueDate} onChange={(e) => setDueDate(e.value)} icon="pi pi-calendar" />
                         </div>
-                        <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
+
+                        <Button label="Add Task" icon="pi pi-plus" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />
+                        {props.onClose && <Button icon='pi pi-trash' className="p-button-success p-button-lg w-10rem mx-auto" type="button" onClick={props.onClose}/>}
+
+                    </div>
                     </form>
                 </div>
             </div>

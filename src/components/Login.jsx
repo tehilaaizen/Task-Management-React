@@ -2,9 +2,8 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { setConnected } from "../store/UserSlice";
 import { useDispatch } from "react-redux";
-import React, {useRef } from 'react'; 
+import  {useRef } from 'react'; 
 import { Messages } from 'primereact/messages';
-import { Divider } from 'primereact/divider';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
@@ -47,7 +46,6 @@ const Login = () => {
        
         <>
         {showLogin&&
- 
         <div className="card">
             <div className="flex flex-column md:flex-row">
                 <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5">
@@ -64,7 +62,8 @@ const Login = () => {
                         <label className="w-6rem">Password</label>
                         <InputText id="password" type="password" className="w-12rem" onChange={e=>setPassword(e.target.value)}/>
                     </div>
-                   <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />               
+                   <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />  
+                   <button type="button" onClick={()=>{setShowLogin}}>Cancel</button>
                 </form>  
                 </div>      
             </div>
