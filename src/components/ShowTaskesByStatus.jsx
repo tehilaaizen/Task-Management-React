@@ -72,19 +72,20 @@ const ShowTaskesByStatus=(props)=>{
                         <div className="flex flex-column align-items-center lg:align-items-start gap-3">
                             <div className="flex flex-column gap-1">
                                 <div className="text-2xl font-bold text-900">{task.title}</div>
-                                <div className="text-700">{task.description}</div>
+                                <div className="text-700 font-alt">{task.description}</div>
+                                <div className="text-700">{new Date(task.dueDate).toLocaleDateString()}</div>
                             </div>
                             <div className="flex flex-column gap-2">
                                 {/* <Rating value={task.priority}  cancel={false}></Rating> */}
                                 <span className="flex align-items-center gap-2">
-                                    <span className="font-semibold">{task.priority}</span>
+                                    <span className="text-700">{task.priority}</span>
                                 </span>
                             </div>
                         </div>
                         <div className="flex flex-row lg:flex-column align-items-center lg:align-items-end gap-4 lg:gap-2">
                             <span className="text-2xl font-semibold">{task.date}</span>
-                            <Button icon="pi pi-trash"  onClick={() => dispatch(removeTask({projectId:project.id,taskId:task.id}))}></Button>
-                            <Button icon='pi pi-angle-double-right' onClick={() => dispatch(changeStatus({projectId:project.id,taskId:task.id}))}></Button>
+                            <Button icon="pi pi-trash"  onClick={() => dispatch(removeTask({projectId:project.id,taskId:task.id}))}className='my-button' ></Button>
+                            <Button icon='pi pi-angle-double-right' onClick={() => dispatch(changeStatus({projectId:project.id,taskId:task.id}))} className='my-button'></Button>
                         </div>
                     </div>
                 </div>

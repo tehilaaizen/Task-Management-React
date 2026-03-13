@@ -14,8 +14,8 @@ function App() {
   const conectedUser=useSelector((state) => state.User.connected);
   return(<>
 {/* <AppBar/> */}
-   {!conectedUser&&<Link to="/Login" style={{marginLeft:'20px'}}>להתחברות</Link>}
-   {conectedUser&&<Link to="/Projects" style={{marginLeft:'20px'}}>רשימת פרוייקטים</Link>}
+   {!conectedUser&&<Link to="/Login" style={{marginLeft:'20px'}}>Login</Link>}
+   {conectedUser&&<Link to="/Projects" style={{marginLeft:'20px'}}>Projects List</Link>}
    <Routes>
       <Route path="/Projects" element={<ProjectList/>} />
       <Route path="/Project/:id" element={<ShowProject/>} />

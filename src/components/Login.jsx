@@ -46,11 +46,11 @@ const Login = () => {
        
         <>
         {showLogin&&
-        <div className="card">
+        <div className="card ">
         <div className="flex flex-column md:flex-row ">
             <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
-                <form  onSubmit={handleSubmit}>
-                <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
+                <form  onSubmit={handleSubmit} className="center ">
+                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                         <label className="w-6rem">Username</label>
                         <InputText id="username" type="text" className="w-12rem" onChange={e=>setUsername(e.target.value) }value={username}/>
                     </div>
@@ -63,8 +63,8 @@ const Login = () => {
                         <InputText id="password" type="password" className="w-12rem" onChange={e=>setPassword(e.target.value)}/>
                     </div>
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                    <Button label="Login" icon="pi pi-user" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" /> 
-                    <Button label="Cancel" icon="pi pi-trash" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />
+                    <Button label="Login" icon="pi pi-user" className="p-button-lg w-10rem mx-auto my-button" type="submit"  /> 
+                    <Button label="Cancel" icon="pi pi-trash" className="p-button-lg w-10rem mx-auto my-button" type="submit"  />
                     </div>
                    
                    {/* <button type="button" onClick={()=>{setShowLogin}}>Cancel</button> */}

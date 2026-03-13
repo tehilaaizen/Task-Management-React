@@ -66,3 +66,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+
+
+/* CSS */
+.my-button {
+  background-color:#1c9db7 ;
+    border-color: #40E0D0;
+      color: #ffffff;
+}

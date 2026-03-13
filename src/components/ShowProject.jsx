@@ -22,7 +22,7 @@ const ShowProject = () => {
                 <div className="flex justify-content-between align-items-center border-1 border-300 border-round p-3 surface-card shadow-2">
                     <h2 className="m-0">{project.name}</h2>
                     {/* <Button label="Add Project" icon="pi pi-plus" className="p-button-success" /> */}
-                     <Button label="הוסף משימה" outlined onClick={()=>setShowAdd(!showAdd)}/> 
+                     <Button label="Add Task" severity="success" onClick={()=>setShowAdd(true)} className="my-button"/> 
                 </div>
                 {showAdd && <AddTesk projectId={project.id} onClose={() => setShowAdd(false)} />}
 

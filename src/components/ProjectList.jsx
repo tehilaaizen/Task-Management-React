@@ -27,37 +27,32 @@ const ProjectList = () => {
 
     const itemTemplate = (project) => {
         const header = (
-            <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />
+            <Link to={`/Project/${project.id}`}>
+
+                <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />
+            </Link>
+
 
         );
+
         const footer = (
+
             <>
                 {/* <Button label="Save" icon="pi pi-check" /> */}
                 {/* אפשר להוסיף כפתור של עריכה */}
-                <Button label="Delete" severity="secondary" icon="pi pi-trash" style={{ marginLeft: '0.5em' }} onClick={() => dispatch(removeProject(project.id))} />
+                <Button label="Delete" severity="danger" icon="pi pi-trash" className="my-button" onClick={() => dispatch(removeProject(project.id))} />
             </>
         );
         return (<>
             <div className="card flex justify-content-center">
-                <Link to={`/Project/${project.id}`}>
                 <Card title={project.name} subTitle={project.createDate} footer={footer} header={header} className="md:w-25rem" >
                     <p className="m-0">
                         {project.description}
                     </p>
                 </Card>
-                </Link>
             </div>
 
-            {/* <div className="flex flex-wrap p-2 align-items-center gap-3" >
-                <div className="flex-1 flex flex-column gap-2 xl:mr-8">
-                    <span className="font-bold">{project.name}</span>      
-                    <span className="text-sm text-500">{project.description}</span>
-                    <span className="text-sm text-300">{project.createDate}</span>  
-                    <Link to={`/project/${project.id}`} className="p-button p-button-secondary" style={{backgroundColor: '#4a90e2', color: 'white', border: 'none'}}>View Details</Link>            
-                </div>
-                 <Button label="Delete" icon="pi pi-trash" className="p-button p-button-danger" style={{backgroundColor: '#9d4540', color: 'white', border: 'none'}} onClick={() => dispatch(removeProject(project.id))} />
-
-            </div >*/}
+           
         </>
         );
     };
@@ -65,10 +60,10 @@ const ProjectList = () => {
     return (
         <>
 
-            <div className="card xl:flex xl:justify-content-center">
-                <button onClick={() => setShowAdd(true)}>הוסף פרוייקט</button>
+            <div className="xl:flex xl:justify-content-center xl:align-items-center p-4 gap-4 surface-ground rounded-lg   shadow-2 align-items-center">
+                <Button label="Add Project" icon="pi pi-plus" className="p-button-lg w-10rem mx-auto my-button " onClick={() => setShowAdd(true)} />
                 {showAdd && <AddProject onClose={() => setShowAdd(false)} />}
-                <OrderList dataKey="id" value={projectsData} itemTemplate={itemTemplate} header="Projects" filter filterBy="name" filterPlaceholder="Search projects"></OrderList>
+                <OrderList dataKey="id" value={projectsData} itemTemplate={itemTemplate} header="Projects" filter filterBy="name" filterPlaceholder="Search projects" className='p-grid'></OrderList>
             </div>
         </>
     )

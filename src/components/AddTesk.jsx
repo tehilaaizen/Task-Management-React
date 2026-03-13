@@ -79,8 +79,8 @@ const AddTesk = (props) => {
                         </div>
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
 
-                        <Button label="Add Task" icon="pi pi-plus" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" />
-                        {props.onClose && <Button icon='pi pi-trash' className="p-button-success p-button-lg w-10rem mx-auto" type="button" onClick={props.onClose}/>}
+                        <Button label="Add Task" icon="pi pi-plus" className="p-button-lg w-10rem mx-auto my-button" type="submit"/>
+                        {props.onClose && <Button icon='pi pi-trash' className="p-button-lg w-10rem mx-auto my-button" type="button" onClick={props.onClose}  />}
 
                     </div>
                     </form>
