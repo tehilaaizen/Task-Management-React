@@ -5,7 +5,6 @@
 // •	עדיפות (Low / Medium / High)
 // •	תאריך יעד
 
-
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { useState } from "react";
@@ -28,6 +27,7 @@ const AddTesk = (props) => {
     const statusOptions = ['To Do', 'In Progress', 'Done'];
     const PriorityOptions = ['Low', 'Medium', 'High'];
 
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const newTask = {
@@ -45,6 +45,7 @@ const AddTesk = (props) => {
         setPriority('');
         setDueDate(null);
         if (props.onClose) props.onClose();
+
     }
 
     // const search = (event) => {

@@ -1,7 +1,7 @@
 import ProjectList from './components/ProjectList'
 import ShowProject from './components/ShowProject'
 import AppBar from './components/AppBar'
-import { Route,Routes } from 'react-router-dom'
+import {  Route,Routes } from 'react-router-dom'
 import Login from './components/Login'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
@@ -9,11 +9,15 @@ import {Button} from 'primereact/button';
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
+import Form from './components/Form';
+
 
 function App() {
   const conectedUser=useSelector((state) => state.User.connected);
   return(<>
+
 {/* <AppBar/> */}
+<Form/>
    {!conectedUser&&<Link to="/Login" style={{marginLeft:'20px'}}>Login</Link>}
    {conectedUser&&<Link to="/Projects" style={{marginLeft:'20px'}}>Projects List</Link>}
    <Routes>
