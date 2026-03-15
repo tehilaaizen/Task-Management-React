@@ -7,6 +7,9 @@ import { Messages } from 'primereact/messages';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
+
+
+//הכפתור של CANCEL לא עובד
 const Login = () => {
     const msgs = useRef(null);
     const globalUser=useSelector(store=>store.User);
@@ -47,9 +50,9 @@ const Login = () => {
         <>
         {showLogin&&
         <div className="card ">
-        <div className="flex flex-column md:flex-row ">
-            <div className="w-full md:w-5 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
-                <form  onSubmit={handleSubmit} className="center ">
+        <div className="flex flex-column md:flex-row surface-border border-round shadow-2 ">
+            <div className="w-400px md:w-50 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
+                <form onSubmit={handleSubmit} className="center ">
                     <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                         <label className="w-6rem">Username</label>
                         <InputText id="username" type="text" className="w-12rem" onChange={e=>setUsername(e.target.value) }value={username}/>

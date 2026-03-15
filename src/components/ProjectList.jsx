@@ -1,11 +1,6 @@
-
 import { Button } from 'primereact/button';
-
-
 import { OrderList } from 'primereact/orderlist';
 import { useState } from 'react';
-
-
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
@@ -15,7 +10,7 @@ import { removeProject } from '../store/ProjectsListSlice';
 import AddProject from './AddProject';
 import { Link } from 'react-router-dom';
 import { Card } from 'primereact/card';
-
+//בהוספת פרויקט לא נשמר התוכן של הפרמטרים שנוספו
 
 
 
@@ -51,15 +46,12 @@ const ProjectList = () => {
                     </p>
                 </Card>
             </div>
-
-           
         </>
         );
     };
 
     return (
         <>
-
             <div className="xl:flex xl:justify-content-center xl:align-items-center p-4 gap-4 surface-ground rounded-lg   shadow-2 align-items-center">
                 <Button label="Add Project" icon="pi pi-plus" className="p-button-lg w-10rem mx-auto my-button " onClick={() => setShowAdd(true)} />
                 {showAdd && <AddProject onClose={() => setShowAdd(false)} />}

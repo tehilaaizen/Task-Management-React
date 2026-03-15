@@ -9,7 +9,6 @@ import {Button} from 'primereact/button';
 import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
-import Form from './components/Form';
 
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
   return(<>
 
 {/* <AppBar/> */}
-<Form/>
+{/* <img className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" src={"https://primefaces.org/cdn/primereact/images/usercard.png"} /> */}
    {!conectedUser&&<Link to="/Login" style={{marginLeft:'20px'}}>Login</Link>}
    {conectedUser&&<Link to="/Projects" style={{marginLeft:'20px'}}>Projects List</Link>}
    <Routes>
