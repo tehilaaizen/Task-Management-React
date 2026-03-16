@@ -17,7 +17,7 @@ const AddProject = ({ onClose ,visible}) => {
         const id = projectId; 
         const newProject = {
             id,
-            name: data.name,
+            name: data.title,
             description: data.description,
             createDate: new Date().toISOString().split('T')[0],
             tasks: [],
@@ -36,9 +36,9 @@ const AddProject = ({ onClose ,visible}) => {
                 <div className="flex flex-wrap justify-content-center align-items-center gap-2 ">
                     <label className="w-6rem">Title</label>
                     <InputText
-                        id="name"
+                        id="title"
                         className="w-12rem"
-                        {...register("name", { required: "Title is required", maxLength: { value: 25, message: "Max 25 characters" } })}
+                        {...register("title", { required: "Title is required", maxLength: { value: 25, message: "Max 25 characters" } })}
                     />
                 </div>
                 {errors.title && <span className="p-error">{errors.title.message}</span>} 

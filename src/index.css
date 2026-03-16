@@ -93,7 +93,6 @@ button:focus-visible {
 
 
 
-/* CSS */
 .my-button {
   background-color:#1c9db7 ;
     border-color: #40E0D0;
@@ -119,7 +118,6 @@ button{
       color: #ffffff;
 }
 
-/* Login page styles (used by Login.jsx) */
 .login-page {
   position: fixed;
   inset: 0;
@@ -129,7 +127,7 @@ button{
   align-items: center;
   justify-content: center;
   background-image: url('https://primefaces.org/cdn/primereact/images/usercard.png');
-  background-size: cover; /* crop if needed */
+  background-size: cover; 
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -155,7 +153,6 @@ button{
   font-size: 1.6rem;
 }
 
-/* label next to input, RTL friendly */
 .login-field {
   display: flex;
   align-items: center;
@@ -181,5 +178,35 @@ button{
   justify-content: center;
   margin-top: 1rem;
 }
-
+.p-orderlist-controls {
+    display: none 
+}
 .login-decor { display: none; }
+
+.task-content {
+  flex: 1 1 auto;
+  min-width: 0; 
+}
+
+/* .task-title, .task-desc {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+} */
+
+.task-desc {
+  color: #555;
+}
+
+
+
+.task-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('https://primefaces.org/cdn/primereact/images/usercard.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12; 
+  z-index: 0;
+}

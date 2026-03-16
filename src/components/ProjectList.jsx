@@ -1,5 +1,4 @@
 import { Button } from 'primereact/button';
-import { OrderList } from 'primereact/orderlist';
 import { useState } from 'react';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -28,8 +27,6 @@ const ProjectList = () => {
         );
         const footer = (
             <>
-                {/* <Button label="Save" icon="pi pi-check" /> */}
-                {/* אפשר להוסיף כפתור של עריכה */}
                 <Button label="Delete" severity="danger" icon="pi pi-trash" className="my-button" onClick={() => dispatch(removeProject(project.id))} />
             </>
         );
@@ -50,7 +47,7 @@ const ProjectList = () => {
     return (
         <>
          {!conectedUser && navigate("/NotConnect")}
-            <div className="flex flex-column justify-content-center align-items-center p-4 gap-4 surface-ground rounded-lg shadow-2">
+            <div className="flex flex-column justify-content-center align-items-center p-4 gap-4 surface-ground shadow-2">
                 <div className="flex justify-content-between align-items-center p-3 surface-card">
                     <div className='p-4'>
                         <h1>Projects</h1>

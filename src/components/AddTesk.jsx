@@ -6,8 +6,6 @@ import { useDispatch } from "react-redux";
 import { addTask } from "../store/ProjectsListSlice";
 import { useForm, Controller } from "react-hook-form";
 import { Dialog } from 'primereact/dialog';
-import { useState } from 'react';
-
 const AddTask = (props) => {
     const dispatch = useDispatch();
 
@@ -39,7 +37,6 @@ const AddTask = (props) => {
         <div className="card">
 
             <div className="flex flex-column md:flex-row ">
-                {/* <div className="w-full md:w-15 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1"> */}
                 <div className="flex flex-column align-items-center justify-content-center gap-3 py-5 border-1 w-auto mx-auto rounded-lg">
                     <Dialog
                         header="Add New Task"
