@@ -10,7 +10,7 @@ import { removeProject } from '../store/ProjectsListSlice';
 import AddProject from './AddProject';
 import { Link } from 'react-router-dom';
 import { Card } from 'primereact/card';
-//בהוספת פרויקט לא נשמר התוכן של הפרמטרים שנוספו
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -23,15 +23,10 @@ const ProjectList = () => {
     const itemTemplate = (project) => {
         const header = (
             <Link to={`/Project/${project.id}`}>
-
                 <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />
             </Link>
-
-
         );
-
         const footer = (
-
             <>
                 {/* <Button label="Save" icon="pi pi-check" /> */}
                 {/* אפשר להוסיף כפתור של עריכה */}
@@ -49,13 +44,27 @@ const ProjectList = () => {
         </>
         );
     };
+    const conectedUser=useSelector((state) => state.User.connected);
+    const navigate=useNavigate();
 
     return (
         <>
-            <div className="xl:flex xl:justify-content-center xl:align-items-center p-4 gap-4 surface-ground rounded-lg   shadow-2 align-items-center">
-                <Button label="Add Project" icon="pi pi-plus" className="p-button-lg w-10rem mx-auto my-button " onClick={() => setShowAdd(true)} />
-                {showAdd && <AddProject onClose={() => setShowAdd(false)} />}
-                <OrderList dataKey="id" value={projectsData} itemTemplate={itemTemplate} header="Projects" filter filterBy="name" filterPlaceholder="Search projects" className='p-grid'></OrderList>
+         {!conectedUser && navigate("/NotConnect")}
+            <div className="flex flex-column justify-content-center align-items-center p-4 gap-4 surface-ground rounded-lg shadow-2">
+                <div className="flex justify-content-between align-items-center p-3 surface-card">
+                    <div className='p-4'>
+                        <h1>Projects</h1>
+                    </div>
+                    <Button label="Add Project" icon="pi pi-plus" className="p-button-lg w-10rem mx-auto my-button p-3 " onClick={() => setShowAdd(true)} />
+                </div>
+                {showAdd && <AddProject onClose={() => setShowAdd(false)} visible={showAdd} />}
+                <div className="grid w-10 mx-auto" value={projectsData} >
+                    {projectsData.map((project) => (
+                        <div key={project.id} className="col-12 md:col-6 lg:col-3 p-4 ">
+                            {itemTemplate(project)}
+                        </div>
+                    ))}
+                </div>
             </div>
         </>
     )

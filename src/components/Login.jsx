@@ -6,10 +6,12 @@ import { useRef } from 'react';
 import { Messages } from 'primereact/messages';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
-
+import { Card } from 'primereact/card';
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
+    const navigate = useNavigate();
     const msgs = useRef(null);
     const globalUser = useSelector(store => store.User);
     const [username, setUsername] = useState('');
@@ -41,50 +43,38 @@ const Login = () => {
             setPassword('');
             msgs.current.show({ sticky: true, severity: 'success', summary: 'Success', detail: 'התחברת בהצלחה' })
             setShowLogin(false);
+            navigate("/Projects");
         }
     }
 
     return (
-
-        <>
-            {showLogin &&
-                <div className="flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-                    <div className="card flex justify-content-center">
-                        <div className="flex flex-column md:flex-row surface-border border-round shadow-2 ">
-                            <div className="w-25rem flex flex-column align-items-center justify-content-center gap-3 py-5 border-1">
-                                <form onSubmit={handleSubmit} className="center ">
-                                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                                        <label className="w-6rem">Username</label>
-                                        <InputText id="username" type="text" className="w-12rem" onChange={e => setUsername(e.target.value)} value={username} />
-                                    </div>
-                                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                                        <label className="w-6rem">Email</label>
-                                        <InputText id="email" type="email" className="w-12rem" onChange={e => setEmail(e.target.value)} value={email} />
-                                    </div>
-                                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                                        <label className="w-6rem">Password</label>
-                                        <InputText id="password" type="password" className="w-12rem" onChange={e => setPassword(e.target.value)} />
-                                    </div>
-                                    <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                                        <Button label="Login" icon="pi pi-user" className="p-button-lg w-10rem mx-auto my-button" type="submit" />
-                                        {/* <Button label="Cancel" icon="pi pi-trash" className="p-button-lg w-10rem mx-auto my-button" type="submit"  /> */}
-                                    </div>
-
-                                    {/* <button type="button" onClick={()=>{setShowLogin}}>Cancel</button> */}
-                                </form>
-                                {/* <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
-                    <label className="w-6rem">Title</label>
-                     <InputText id="title" type="text" className="w-12rem" onChange={e => setTitle(e.target.value)} value={title} />
-                </div> */}
-                                {/* <Button label="Add Task" icon="pi pi-plus" className="p-button-success p-button-lg w-10rem mx-auto" type="submit" /> */}
-
+        <div className="login-page">
+            {showLogin && (
+                <Card className="login-card">
+                    <h2 className="login-title">Start managing your projects</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div className="p-fluid">
+                            <div className="p-field login-field">
+                                <label>Username</label>
+                                <InputText id="username" type="text" onChange={e => setUsername(e.target.value)} value={username} />
+                            </div>
+                            <div className="p-field login-field">
+                                <label>Email</label>
+                                <InputText id="email" type="email" onChange={e => setEmail(e.target.value)} value={email} />
+                            </div>
+                            <div className="p-field login-field">
+                                <label>Password</label>
+                                <InputText id="password" type="password" onChange={e => setPassword(e.target.value)} />
+                            </div>
+                            <div className="login-actions">
+                                <Button label="Login" icon="pi pi-user" className="p-button-lg" type="submit" />
                             </div>
                         </div>
-                    </div>
-                </div>}
-            <Messages ref={msgs} />
-
-        </>
+                    </form>
+                    <Messages ref={msgs} />
+                </Card>
+            )}
+        </div>
     )
 }
 export default Login

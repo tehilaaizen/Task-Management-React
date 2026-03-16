@@ -3,12 +3,12 @@ import { Button } from 'primereact/button';
 import { Dropdown } from 'primereact/dropdown';
 import { Calendar } from 'primereact/calendar';
 import { useDispatch } from "react-redux";
-import { addTask } from "../store/ProjectsListSlice";
+import { editTask } from "../store/ProjectsListSlice";
 import { useForm, Controller } from "react-hook-form";
 import { Dialog } from 'primereact/dialog';
 import { useState } from 'react';
 
-const AddTask = (props) => {
+const EditTask = (props) => {
     const dispatch = useDispatch();
 
     const statusOptions = ['To Do', 'In Progress', 'Done'];
@@ -21,33 +21,31 @@ const AddTask = (props) => {
     });
 
     const onSubmit = (data) => {
-        const newTask = {
-            ...data,
-            dueDate: data.dueDate ? data.dueDate.toISOString() : new Date().toISOString()
-        }
-
-        dispatch(addTask({
+        dispatch(editTask({
             projectId: props.projectId,
-            task: newTask
+            taskId: props.task.id,
+            title: data.title,
+            description: data.description,
+            priority: data.priority,
+            dueDate: data.dueDate ? data.dueDate.toISOString() : props.task.dueDate
         }));
 
         reset();
         if (props.onClose) props.onClose();
     }
-
     return (
-        <div className="card">
+         <div className="card">
 
             <div className="flex flex-column md:flex-row ">
                 {/* <div className="w-full md:w-15 flex flex-column align-items-center justify-content-center gap-3 py-5 border-1"> */}
                 <div className="flex flex-column align-items-center justify-content-center gap-3 py-5 border-1 w-auto mx-auto rounded-lg">
                     <Dialog
-                        header="Add New Task"
+                        header={`Edit Task ${props.task.title}`}
                         visible={props.visible}
-                       style={{ width: '400px' }}
-                       onHide={props.onClose}
-                        modal={true}
-                        closable={false}   
+                        style={{ width: '400px' }}
+                        onHide={props.onClose}
+                        modal={true}   
+                        closable={false}
                     >
                         <form onSubmit={handleSubmit(onSubmit)} className="center ">
                             <div className="flex flex-column justify-content-center align-items-start gap-1 p-2">
@@ -74,25 +72,7 @@ const AddTask = (props) => {
                                 {errors.description && <span className="p-error">{errors.description.message}</span>}
                             </div>
 
-                            <div className="flex flex-column justify-content-center align-items-start gap-1 p-2">
-                                <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-                                    <label className="w-6rem">Status</label>
-                                    <Controller
-                                        name="status"
-                                        control={control}
-                                        rules={{ required: "Status is required" }}
-                                        render={({ field }) => (
-                                            <Dropdown
-                                                {...field}
-                                                className="w-12rem"
-                                                options={statusOptions}
-                                                placeholder="Choose status"
-                                            />
-                                        )}
-                                    />
-                                </div>
-                                {errors.status && <span className="p-error">{errors.status.message}</span>}
-                            </div>
+                         
 
                             <div className="flex flex-column justify-content-center align-items-start gap-1 p-2">
                                 <div className="flex flex-wrap justify-content-center align-items-center gap-2">
@@ -134,8 +114,8 @@ const AddTask = (props) => {
 
                             <div className="flex flex-wrap justify-content-center align-items-center gap-2 p-2">
                                 <Button
-                                    label="Add Task"
-                                    icon="pi pi-plus"
+                                    label="Save"
+                                    icon="pi pi-check"
                                     className="p-button-lg w-10rem mx-auto my-button"
                                     type="submit"
                                 />
@@ -154,7 +134,6 @@ const AddTask = (props) => {
             </div>
 
         </div>
-    )
+    );
 };
-
-export default AddTask;
+export default EditTask;

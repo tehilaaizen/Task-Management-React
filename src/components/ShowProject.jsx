@@ -6,31 +6,47 @@ import { Button } from 'primereact/button';
 import ShowTaskesByStatus from "./ShowTaskesByStatus";
 import AddTesk from "./AddTesk";
 import { useState } from "react";
-// •	סטטוס (To Do / In Progress / Done)
+import { useNavigate } from "react-router-dom";
 const ShowProject = () => {
     const { id } = useParams();
+     
+if(isNaN(id)){
+    return <div>Invalid project ID</div>;
+}   
     const project = useSelector((state) => state.projectListSlice.projects.find(proj => proj.id === parseInt(id)));
-    // if (!project) {
-    //     return <div>Project not found</div>;
-    // }
-    // const tasks = project.tasks || [];
+  
+    const tasks = project.tasks || [];
     const [showAdd, setShowAdd] = useState(false);
+    const conectedUser=useSelector((state) => state.User.connected);
+    const navigate=useNavigate();
     return (
         <>
+           {!conectedUser && navigate("/NotConnect")}
             <div className="flex flex-column h-screen w-full p-4 gap-4 surface-ground">
 
-                <div className="flex justify-content-between align-items-center border-1 border-300 border-round p-3 surface-card shadow-2">
-                    <h2 className="m-0">{project.name}</h2>
+                <div className="flex justify-content-between align-items-center p-3 surface-card">
+                {/* <div className="flex flex-wrap justify-content-center align-items-center gap-2"> */}
+
+                    <h1 className="m-0">{project.name}</h1>
                     {/* <Button label="Add Project" icon="pi pi-plus" className="p-button-success" /> */}
-                     <Button label="Add Task" severity="success" onClick={()=>setShowAdd(true)} className="my-button"/> 
+                    <Button label="Add Task" severity="success" onClick={() => setShowAdd(true)} className="my-button" />
+                    {showAdd && (
+                        <AddTesk projectId={project.id} visible={showAdd} onClose={() => setShowAdd(false)} />
+                    )}
                 </div>
-                {showAdd && <AddTesk projectId={project.id} onClose={() => setShowAdd(false)} />}
+                <div className="flex gap-3 w-full">
+                    <div className="flex-1">
+                        <ShowTaskesByStatus status="To Do" project={project} />
+                    </div>
 
-                <div className="flex flex-1 gap-3">
+                    <div className="flex-1">
+                        <ShowTaskesByStatus status="In Progress" project={project} />
+                    </div>
 
-                    <ShowTaskesByStatus status="To Do" project={project} />
-                    <ShowTaskesByStatus status="In Progress" project={project} />
-                    <ShowTaskesByStatus status="Done" project={project} />
+                    <div className="flex-1">
+                        <ShowTaskesByStatus status="Done" project={project} />
+                    </div>
+
                 </div>
 
             </div>

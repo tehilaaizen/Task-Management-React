@@ -1,60 +1,12 @@
-// import react, { useState } from 'react';
-// import { addProject } from '../store/ProjectsListSlice';
-// import { useDispatch ,useSelector} from 'react-redux';
-// import { setProjectId } from '../store/ProjectIdSlice';
-// const AddProject = ({onClose}) => {
-//     const [projectName, setProjectName] = useState('');
-//     const [projectDescription, setProjectDescription] = useState('');
-//     const dispatch = useDispatch();
-//     const projectId = useSelector((state) => state.projectId);
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const id = projectId.toString();
-//         const newProject = {
-//             id: id,
-//             name: projectName,
-//             description: projectDescription,
-//             createDate: new Date().toISOString().split('T')[0] 
-//         };
-//         dispatch(addProject(newProject));
-//         dispatch(setProjectId());
-//         setProjectName('');
-//         setProjectDescription('');
-//         if (onClose) onClose();
-//     };
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <input
-//                 type="text"
-//                 value={projectName}
-//                 onChange={(e) => setProjectName(e.target.value)}
-//                 placeholder="Enter project name"
-//             />
-//             <input type="text" 
-//                 value={projectDescription}
-//                 onChange={(e) => setProjectDescription(e.target.value)}
-//                 placeholder="Enter project description" 
-//             />
-//             <button type="submit">Add Project</button>
-//             {onClose && <button type="button" onClick={onClose}>Cancel</button>}
-//         </form>
-//     );
-// };
-
-// export default AddProject;
-
-
-
-// כשאני יוצרת פרויקט חדש אז כשאני עובר לדף של המישמות הוא לא מציג כלום
 import { useSelector, useDispatch } from "react-redux"; 
 import { addProject } from '../store/ProjectsListSlice';
 import { setProjectId } from '../store/ProjectIdSlice';
 import { InputText } from 'primereact/inputtext';
 import { useForm } from "react-hook-form";
+import { Dialog } from "primereact/dialog";
+import { Button } from "primereact/button";
 
-const AddProject = ({ onClose }) => {
+const AddProject = ({ onClose ,visible}) => {
     const dispatch = useDispatch();
 
     const projectId = useSelector((state) => state.projectId);
@@ -62,7 +14,7 @@ const AddProject = ({ onClose }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        const id = projectId.toString(); 
+        const id = projectId; 
         const newProject = {
             id,
             name: data.name,
@@ -78,9 +30,10 @@ const AddProject = ({ onClose }) => {
     }
 
     return (
+        <Dialog header="Add New Project" visible={visible} style={{ width: '400px' }} onHide={onClose} modal={true} closable={false}>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-column justify-content-center align-items-start gap-1 p-2">
-                <div className="flex flex-wrap justify-content-center align-items-center gap-2">
+                <div className="flex flex-wrap justify-content-center align-items-center gap-2 ">
                     <label className="w-6rem">Title</label>
                     <InputText
                         id="name"
@@ -101,10 +54,12 @@ const AddProject = ({ onClose }) => {
                 </div>
                 {errors.description && <span className="p-error">{errors.description.message}</span>} 
             </div>
-
-            <button type="submit">Add Project</button>
-            {onClose && <button type="button" onClick={onClose}>Cancel</button>}
+            <div className="p-2">
+            <Button type="submit" icon="pi pi-check" label="Save" className="p-button-lg"/>
+            {onClose && <Button type="button" onClick={onClose} icon="pi pi-times" label="Cancel"/>}
+            </div>
         </form>
+        </Dialog>
     );
 };
 
