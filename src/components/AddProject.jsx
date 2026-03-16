@@ -45,6 +45,9 @@
 
 // export default AddProject;
 
+
+
+// כשאני יוצרת פרויקט חדש אז כשאני עובר לדף של המישמות הוא לא מציג כלום
 import { useSelector, useDispatch } from "react-redux"; 
 import { addProject } from '../store/ProjectsListSlice';
 import { setProjectId } from '../store/ProjectIdSlice';
@@ -62,8 +65,11 @@ const AddProject = ({ onClose }) => {
         const id = projectId.toString(); 
         const newProject = {
             id,
-            ...data, 
-             createDate: new Date().toISOString().split('T')[0] 
+            name: data.name,
+            description: data.description,
+            createDate: new Date().toISOString().split('T')[0],
+            tasks: [],
+            taskesId: 1
         };
         dispatch(addProject(newProject )); 
         dispatch(setProjectId()); 
