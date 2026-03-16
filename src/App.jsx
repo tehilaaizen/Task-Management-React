@@ -17,8 +17,8 @@ function App() {
 
 {/* <AppBar/> */}
 {/* <img className="w-9 sm:w-16rem xl:w-10rem shadow-2 block xl:block mx-auto border-round" src={"https://primefaces.org/cdn/primereact/images/usercard.png"} /> */}
-   {!conectedUser&&<Link to="/Login" style={{marginLeft:'20px'}}>Login</Link>}
-   {conectedUser&&<Link to="/Projects" style={{marginLeft:'20px'}}>Projects List</Link>}
+   {!conectedUser&&<Link to="/Login" style={{marginLeft:'800px'}}>Login</Link>}
+   {conectedUser&&<Link to="/Projects" style={{marginLeft:'800px'}}>Projects List</Link>}
    <Routes>
       <Route path="/Projects" element={<ProjectList/>} />
       <Route path="/Project/:id" element={<ShowProject/>} />

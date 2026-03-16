@@ -63,9 +63,9 @@ const AddProject = ({ onClose }) => {
         const newProject = {
             id,
             ...data, 
-            // createDate: new Date().toISOString().split('T')[0] // תאריך היום
+             createDate: new Date().toISOString().split('T')[0] 
         };
-        dispatch(addProject({ projectId: id, project: newProject })); 
+        dispatch(addProject(newProject )); 
         dispatch(setProjectId()); 
         reset();
         if (onClose) onClose();
@@ -77,9 +77,9 @@ const AddProject = ({ onClose }) => {
                 <div className="flex flex-wrap justify-content-center align-items-center gap-2">
                     <label className="w-6rem">Title</label>
                     <InputText
-                        id="title"
+                        id="name"
                         className="w-12rem"
-                        {...register("title", { required: "Title is required", maxLength: { value: 25, message: "Max 25 characters" } })}
+                        {...register("name", { required: "Title is required", maxLength: { value: 25, message: "Max 25 characters" } })}
                     />
                 </div>
                 {errors.title && <span className="p-error">{errors.title.message}</span>} 
